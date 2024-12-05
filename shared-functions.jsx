@@ -72,6 +72,7 @@ function solidColorToHexString(color) {
 function addMargins(targetDoc, pWidth, pHeight, color, docNameSuffix) {
     docNameSuffix = docNameSuffix ? docNameSuffix : solidColorToHexString(color).replace('#', '');
     var nameWithoutExtension = getDocumentNameWithoutExtension(targetDoc);
+    nameWithoutExtension = nameWithoutExtension.replace("_crop", "");
     var newDoc = targetDoc.duplicate(nameWithoutExtension + '_' + docNameSuffix);
 
     newDoc.resizeCanvas(pWidth, pHeight, AnchorPosition.MIDDLECENTER);
@@ -86,9 +87,10 @@ function addMargins(targetDoc, pWidth, pHeight, color, docNameSuffix) {
     newDoc.artLayers.add();
     newDoc.activeLayer.name = "Image";
     var pastedLayer = newDoc.paste();
-    var percentResizeLayer = 90;
-    pastedLayer.resize(percentResizeLayer, percentResizeLayer, AnchorPosition.MIDDLECENTER);
-    centerPastedLayer(newDoc, pastedLayer);
+
+    //var percentResizeLayer = 90;
+    //pastedLayer.resize(percentResizeLayer, percentResizeLayer, AnchorPosition.MIDDLECENTER);
+    //centerPastedLayer(newDoc, pastedLayer);
 
     app.runMenuItem(stringIDToTypeID("fitOnScreen"));
 }

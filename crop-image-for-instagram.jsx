@@ -20,36 +20,36 @@ if (app.documents.length > 0) {
     if (imgRatio > landscapeRatio) {
         doc.selection.selectAll();
         doc.selection.copy();
-        var newDoc2 = doc.duplicate(nameWithoutExtension);
+        var newDocCrop = doc.duplicate(nameWithoutExtension + '_crop');
 
         var targetWidth = imgHeight * landscapeRatio;
         var newRatio = imgWidth / targetWidth;
 
-        newDoc2.resizeCanvas(targetWidth, imgHeight, AnchorPosition.MIDDLECENTER);
+        newDocCrop.resizeCanvas(targetWidth, imgHeight, AnchorPosition.MIDDLECENTER);
 
         app.runMenuItem(stringIDToTypeID("fitOnScreen"));
 
         var newWidth = targetWidth * newRatio;
         var newHeight = imgHeight * newRatio;
-        addMargins(newDoc2, newWidth, newHeight, whiteColor);
-        addMargins(newDoc2, newWidth, newHeight, blackColor);
+        addMargins(newDocCrop, newWidth, newHeight, whiteColor);
+        addMargins(newDocCrop, newWidth, newHeight, blackColor);
 
     } else if (imgRatio < portraitRatio) {
         doc.selection.selectAll();
         doc.selection.copy();
-        var newDoc2 = doc.duplicate(nameWithoutExtension);
+        var newDocCrop = doc.duplicate(nameWithoutExtension + '_crop');
 
         var targetHeight = imgWidth / portraitRatio;
         var newRatio = imgHeight / targetHeight;
 
-        newDoc2.resizeCanvas(imgWidth, targetHeight, AnchorPosition.MIDDLECENTER);
+        newDocCrop.resizeCanvas(imgWidth, targetHeight, AnchorPosition.MIDDLECENTER);
 
         app.runMenuItem(stringIDToTypeID("fitOnScreen"));
 
         var newWidth = imgWidth * newRatio;
         var newHeight = targetHeight * newRatio;
-        addMargins(newDoc2, newWidth, newHeight, whiteColor);
-        addMargins(newDoc2, newWidth, newHeight, blackColor);
+        addMargins(newDocCrop, newWidth, newHeight, whiteColor);
+        addMargins(newDocCrop, newWidth, newHeight, blackColor);
 
     } else {
         alert("L'image est d\u00E9j\u00E0 au bon format.");
